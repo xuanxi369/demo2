@@ -87,6 +87,16 @@
     </p>
     </h5>
   </footer>
+  
+<script>
+(async () => {
+  try {
+    const res = await fetch("/api/auth/me", { credentials: "include" });
+    const me = await res.json();
+    if (!me.authenticated) location.href = "auth.html";
+  } catch { location.href = "auth.html"; }
+})();
+</script>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
