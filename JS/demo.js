@@ -317,27 +317,26 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // const userBubble = document.createElement("p");
-    // userBubble.textContent = "🧑 你：" + userMessage;
-    // chatLog.appendChild(userBubble);
+    const userBubble = document.createElement("p");
+    userBubble.textContent = "🧑 你：" + userMessage;
+    chatLog.appendChild(userBubble);
 
 
     // c) AI 对话：改为同域 /api/analyze，并携带 Cookie
-  sendChatBtn.addEventListener("click", async () => {
-    const userMessage = chatInput.value.trim();
-    if (!userMessage || !fullContractText) { alert("请输入问题并上传合同文本"); return; }
+  // sendChatBtn.addEventListener("click", async () => {
+  //   const userMessage = chatInput.value.trim();
+  //   if (!userMessage || !fullContractText) { alert("请输入问题并上传合同文本"); return; }
 
     chatInput.value = "";
     statusArea.textContent = "🤖 AI 正在思考中...";
 
-    try {
-      const response = await fetch("/api/analyze", {
-  method: "POST",
-  credentials: "include",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ contract: fullContractText, question: userMessage })
-});
-
+ try {
+      const response = await fetch("https://iieao-thunder-5504.millychck-033.workers.dev/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ contract: fullContractText, question: userMessage })
+      });
+   
       const data = await response.json();
       const answer = data.choices?.[0]?.message?.content || "未返回任何内容";
 
@@ -364,18 +363,6 @@ document.addEventListener("DOMContentLoaded", function () {
       statusArea.textContent = "❌ 请求失败，请检查网络或后端服务状态";
     }
   });
-
-  // 展开/收起 AI 对话区（注释掉）
-  // toggleChatLogBtn.addEventListener("click", () => {
-  //   const currentMax = chatLog.style.maxHeight;
-  //   if (!currentMax || currentMax === "250px") {
-  //     chatLog.style.maxHeight = "none";
-  //     toggleChatLogBtn.textContent = "收起";
-  //   } else {
-  //     chatLog.style.maxHeight = "250px";
-  //     toggleChatLogBtn.textContent = "展开";
-  //   }
-  // });
 
   // 实时更新时间
   function updateCurrentTime() {
