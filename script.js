@@ -167,8 +167,14 @@ regSendBtn.onclick = async () => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, purpose: "register" })
     });
-    const data = await jsonOrEmpty(r);
-    $("#reg-msg").textContent = r.ok && data.ok ? "验证码已发送" : `失败：${data.error || r.status}`;
+ let data = await jsonOrEmpty(r);
+if (!r.ok || !data.ok) {
+  const d = data.detail || {};
+  const readable = d.code ? `${d.code}: ${d.message || d.raw || r.status}` : (data.error || r.status);
+  $("#reg-msg").textContent = `失败：${readable}`;
+} else {
+  $("#reg-msg").textContent = "验证码已发送";
+}
   } catch {
     $("#reg-msg").textContent = "失败：网络错误";
   }
