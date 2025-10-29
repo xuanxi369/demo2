@@ -309,11 +309,12 @@ document.addEventListener("DOMContentLoaded", function () {
     statusArea.textContent = "🤖 AI 正在思考中...";
 
     try {
-      const response = await fetch("https://iieao-thunder-5504.millychck-033.workers.dev/", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ contract: fullContractText, question: userMessage })
-      });
+      const response = await fetch("/api/analyze", {
+  method: "POST",
+  credentials: "include",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({ contract: fullContractText, question: userMessage })
+});
 
       const data = await response.json();
       const answer = data.choices?.[0]?.message?.content || "未返回任何内容";
