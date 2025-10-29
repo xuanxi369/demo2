@@ -1,3 +1,19 @@
+/* a) 进入即检查登录态（未登录→登录页） */
+(async () => {
+  try {
+    const r = await fetch("api/auth/me", { credentials: "include" });
+    const me = await r.json();
+    if (!me.authenticated) location.href = "index.html";
+  } catch (e) { location.href = "index.html"; }
+})();
+
+/* b) 指定 pdf.js worker 源（提取大 PDF 更稳） */
+if (window.pdfjsLib) {
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js";
+}
+
+
 // 变量绑定
 const fileInput = document.getElementById("file-input");
 const dropZone = document.getElementById("drag-drop-zone");
@@ -301,9 +317,15 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    const userBubble = document.createElement("p");
-    userBubble.textContent = "🧑 你：" + userMessage;
-    chatLog.appendChild(userBubble);
+    // const userBubble = document.createElement("p");
+    // userBubble.textContent = "🧑 你：" + userMessage;
+    // chatLog.appendChild(userBubble);
+
+
+    // c) AI 对话：改为同域 /api/analyze，并携带 Cookie
+  sendChatBtn.addEventListener("click", async () => {
+    const userMessage = chatInput.value.trim();
+    if (!userMessage || !fullContractText) { alert("请输入问题并上传合同文本"); return; }
 
     chatInput.value = "";
     statusArea.textContent = "🤖 AI 正在思考中...";
