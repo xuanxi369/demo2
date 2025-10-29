@@ -7,11 +7,11 @@
   } catch (e) { location.href = "index.html"; }
 })();
 
-/* b) 指定 pdf.js worker 源（提取大 PDF 更稳） */
-if (window.pdfjsLib) {
-  pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js";
-}
+// /* b) 指定 pdf.js worker 源（提取大 PDF 更稳） */
+// if (window.pdfjsLib) {
+//   pdfjsLib.GlobalWorkerOptions.workerSrc =
+//     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js";
+// }
 
 
 // 变量绑定
