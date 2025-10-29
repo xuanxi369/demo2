@@ -170,7 +170,10 @@ regSendBtn.onclick = async () => {
  let data = await jsonOrEmpty(r);
 if (!r.ok || !data.ok) {
   const d = data.detail || {};
-  const readable = d.code ? `${d.code}: ${d.message || d.raw || r.status}` : (data.error || r.status);
+  // const readable = d.code ? `${d.code}: ${d.message || d.raw || r.status}` : (data.error || r.status);
+  const readable = d.code
+    ? `${d.code}: ${d.message || d.raw || r.status}`
+    : (d.message || d.raw || data.error || r.status);
   $("#reg-msg").textContent = `失败：${readable}`;
 } else {
   $("#reg-msg").textContent = "验证码已发送";
