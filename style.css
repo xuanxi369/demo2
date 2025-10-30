@@ -173,12 +173,6 @@ footer a {
   /* 或者none，如果你不想有下划线 */
 }
 
-input::placeholder {
-  color: #322e2e;
-}
- */
-
-
 :root {
   --gold: #d4a017;
   --line: rgba(255, 255, 255, 0.12);
@@ -192,7 +186,7 @@ html, body {
   height: 100%;
   margin: 0;
   font-family: 'Noto Serif SC', serif;
-  background: linear-gradient(180deg, #9b9be6 0%, #595976 100%);
+  background: linear-gradient(180deg, #3d3d45 0%, #5f5f77 100%);
   color: #1d1d1f;
 }
 
@@ -357,3 +351,4 @@ footer a {
 input::placeholder {
   color: #322e2e;
 }
+
