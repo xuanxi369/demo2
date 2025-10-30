@@ -22,7 +22,7 @@ button.secondary{background:linear-gradient(90deg,#1a2a44,#2e4372);border:none}
 button:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(0,0,0,.35)}
 .msg{margin-top:10px;color:#ffd08a}.hint{margin-top:8px;color:#9fb3ff;font-size:14px}
 .foot{text-align:center;margin-top:24px;color:#8aa1d6;font-size:13px}
-.footer a {
+footer a {
   color: inherit;
   text-decoration: underline; /* 或者none，如果你不想有下划线 */
 }
